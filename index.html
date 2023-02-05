@@ -23,7 +23,7 @@
         }
 
         #box {
-            width: 397px;
+            width: 485px;
             height: 458px;
             border-radius: 24px;
             background: rgb(0, 213, 255);
@@ -59,7 +59,8 @@
         }
 
         img {
-            width: 188px;
+            width: 352px;
+            height: 237px;
 
         }
 
@@ -89,25 +90,25 @@
     <div class="container">
         <div id="box">
             <div class="header">
-                <img class="imag" src="Flag_of_Nepal.svg.png" alt="">
+                <img class="imag" src="" alt="">
                 <div class="cla">
-                    <p class="country">NEPAL</p>
-                    <p class="capital">Capital : Kathmandu</p>
+                    <p class="country"></p>
+                    <p class="capital"></p>
                 </div>
 
             </div>
             <hr>
             <div class="foot">
                 <div class="card1">
-                    <p class="name">Nepal</p>
+                    <p class="name1"></p>
                     <p class="lang">Native Language</p>
                 </div>
                 <div class="card2">
-                    <div class="name">20918929</div>
+                    <div class="name2"></div>
                     <div class="lang">Population</div>
                 </div>
                 <div class="card3">
-                    <div class="name">Nepalese</div>
+                    <div class="name3"></div>
                     <div class="lang">Demonym</div>
                 </div>
             </div>
@@ -115,19 +116,32 @@
     </div>
 
     <script>
-        let container = document.querySelector('#container');
-        const request = new XMLHttpRequest();
-        request.open('GET', "https://restcountries.eu/rest/v2/name/nepal");
+        let country = document.querySelector('.country');
+        let capital = document.querySelector('.capital');
+        let language = document.querySelector('.name1');
+        let population = document.querySelector('.name2');
+        let Demonym = document.querySelector('.name3');
+        let img = document.querySelector('.imag');
+
+        let request = new XMLHttpRequest();
+        request.open('GET', 'https://restcountries.com/v3.1/name/india');
         request.send();
 
-        // to get respond
         request.addEventListener('load', function () {
-            // console.log(this.responseText);
-            const [data] = JSON.parse(this.responseText);
+            let [data] = JSON.parse(this.responseText)
+            country.innerHTML = data.name.common;
+            capital.innerHTML = data.capital;
+            language.innerHTML = data.languages.hin;
+            population.innerHTML = data.population;
+            Demonym.innerHTML = data.demonyms.eng.f;
+            img.src = data.flags.png;
             console.log(data);
-
-            // container.insertAdjacentHTML('afterbegin', htmlData)
         })
+
+        // container.insertAdjacentHTML('afterbegin', htmlData)
+
+
+
     </script>
 </body>
 
